@@ -1,0 +1,17 @@
+CREATE DATABASE Estudosddl1;
+-- Tabela Pai
+CREATE TABLE Categoria (
+    id_categoria INT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL
+);
+
+-- Tabela Filho, referenciando a Tabela Pai
+CREATE TABLE Produto (
+    id_produto INT PRIMARY KEY,
+    nome_produto VARCHAR(100) NOT NULL,
+    -- id_categoria é a Chave Estrangeira
+    id_categoria INT, 
+    FOREIGN KEY (id_categoria) REFERENCES Categoria(id_categoria) 
+    ON DELETE CASCADE -- Se a categoria for apagada, os produtos dela também serão.
+    ON UPDATE CASCADE -- Se o ID da categoria mudar, o ID nos produtos também muda.
+);
